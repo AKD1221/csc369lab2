@@ -72,9 +72,22 @@ public class HadoopApp {
 	{
 	    job.setReducerClass(part4.ReducerImpl.class);
 	    job.setMapperClass(part4.MapperImpl.class);
-		
 	    job.setOutputKeyClass(part4.OUTPUT_KEY_CLASS);
 	    job.setOutputValueClass(part4.OUTPUT_VALUE_CLASS);
+	}
+	else if ("part5".equalsIgnoreCase(otherArgs[0])) 
+	{
+	    job.setReducerClass(part5.ReducerImpl.class);
+	    job.setMapperClass(part5.MapperImpl.class);
+	    job.setOutputKeyClass(part5.OUTPUT_KEY_CLASS);
+	    job.setOutputValueClass(part5.OUTPUT_VALUE_CLASS);
+	}
+	else if ("part6".equalsIgnoreCase(otherArgs[0])) 
+	{
+	    job.setReducerClass(part6.ReducerImpl.class);
+	    job.setMapperClass(part6.MapperImpl.class);
+	    job.setOutputKeyClass(part6.OUTPUT_KEY_CLASS);
+	    job.setOutputValueClass(part6.OUTPUT_VALUE_CLASS);
 	}
 
 	else {

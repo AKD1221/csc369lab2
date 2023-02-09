@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.text.SimpleDateFormat;  
 
-
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -17,7 +16,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import com.google.protobuf.TextFormat.ParseException;
 
-public class part5 {
+public class part6 {
 
     public static final Class OUTPUT_KEY_CLASS = Text.class;
     public static final Class OUTPUT_VALUE_CLASS = IntWritable.class;
@@ -30,22 +29,24 @@ public class part5 {
 			   Context context) throws IOException, InterruptedException {
 
         try{
+            
             String[] sa = value.toString().split(" ");
             Text hostname = new Text();
-            String month = new String(sa[3].substring(1).split("/")[1]);
-            String year = new String(sa[3].substring(1).split("/")[2].split(":")[0]);
+            String datetime = new String(sa[3].substring(1));
+            String mydate = new String(datetime.split(":")[0]);
+            IntWritable myval = new IntWritable(Integer.parseInt(sa[9]));
+
+        
+            SimpleDateFormat format = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
+            Date date = format.parse(mydate);
+
+            SimpleDateFormat dayOfWeekFormat = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+            String dayOfWeek = dayOfWeekFormat.format(date);
 
 
-            Date date = new SimpleDateFormat("MMM", Locale.ENGLISH).parse(month);//put your month name in english here
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(date);
-            Integer monthNumber= cal.get(Calendar.MONTH) + 1;
 
-            String formatted = String.format("%02d", monthNumber);
-
-
-            hostname.set(year + formatted);
-	        context.write(hostname, one);
+            hostname.set(dayOfWeek);
+	        context.write(hostname, myval);
     
             }
             catch(Exception e)
