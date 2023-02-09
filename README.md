@@ -2,9 +2,10 @@ Andy Do
 CSC 369 Lab 2
 Professor Migler
 
-Did not change any of the reduce phases since all of them require just summing up the values given from the map phase. Outlined below are the key and values that we emit from our map phase as well as anything extra we do such as sorting by ascending.
+Did not change any of the reduce phases since all of them require just summing up the values given from the map phase. Outlined below are the key and values that we emit from our map phase as well as anything extra we do such as sorting by ascending. For mapreduces that take more than one for sorting the output of the first mapreduce becomes the input for the second mapreduce and then outputs the same file except the values are now sorted ascendingly.
 
 Changed a few of the dates in the given acces.log file to test for Calendar month/year for part5.
+
 
 Part 1:
 - Key is sa[6] which becomes URL path
